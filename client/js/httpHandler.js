@@ -10,7 +10,6 @@
       url: serverUrl,
       type: 'GET',
       success: (data) => {
-        console.log('success')
         SwimTeam.move(data)
       },
       error: () => {
@@ -19,7 +18,7 @@
     });
   }
 
-  setInterval(SwimTeamFetcher, 200);
+  setInterval(SwimTeamFetcher, 500);
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -43,8 +42,20 @@
     });
   };
 
-
-
+  // const imgFetcher = () => {
+  //   $.ajax({
+  //     url: serverUrl +'/background.jpg',
+  //     type: 'GET',
+  //     success: (data) => {
+  //       $('.body.background').append(data);
+  //     },
+  //     error: () => {
+  //       console.log('error');
+  //     }
+  //   });
+  // }
+  // setInterval(imgFetcher, 500)
+  
   $('form').on('submit', function(e) {
     e.preventDefault();
 

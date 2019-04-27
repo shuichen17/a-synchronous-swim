@@ -8,29 +8,26 @@ const messages = require('./messageQueue');
 module.exports.backgroundImageFile = path.join('.', 'background.jpg');
 ////////////////////////////////////////////////////////
 
-// module.exports.router = (req, res, next = ()=>{}) => {
-//   console.log('Serving request type ' + req.method + ' for url ' + req.url);
-//   console.log(req);
-//   res.writeHead(200, headers);
-//   res.end();
-// };
 
-
-module.exports.router = (req, res, next = ()=>{}) => {
+module.exports.router = (req, res, next = () => {}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
-  
-  if (req.method === 'GET'){
-    console.log('get received')
 
-  var command = messages.dequeue();
-  if (command !== undefined){
-    res.writeHead(200, headers);
-    res.write(command);
-    res.end();
-  } else {
-  res.writeHead(200, headers);
-  res.end();
-  }
+  if (req.method === 'GET') {
+    var command = messages.dequeue();
+    if (command !== undefined) {
+      res.writeHead(200, headers);
+      res.end(command);
+    } 
+    if (req.url === '/background.jpg'){
+      fs.readFile('./background.jpg', (err, data) => {
+        if (err) throw err;
+        // res.writeHead(200, headers);
+        res.end(data);
+      });
+    } else {
+      res.writeHead(200, headers);
+      res.end();
+    }
   }
 };
 
