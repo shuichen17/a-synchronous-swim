@@ -17,7 +17,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -27,6 +27,23 @@
       }
     });
   };
+
+  // const ajaxFileUplaod = (file) => {
+  //   var formData = new FormData();
+  //   formData.append('file', file);
+  //   $.ajax({
+  //     type: 'POST',
+  //     data: formData,
+  //     url: serverUrl,
+  //     cache: false,
+  //     contentType: false,
+  //     processData: false,
+  //     success: () => {
+  //       // reload the page
+  //       window.location = window.location.href;
+  //     }
+  //   });
+  // };
 
   $('form').on('submit', function(e) {
     e.preventDefault();
